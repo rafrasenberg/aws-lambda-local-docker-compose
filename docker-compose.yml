@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  hello_world_lambda:
+    build: ./hello_world_lambda
+    ports:
+      - 9000:8080
+    volumes:
+      - ./hello_world_lambda/src:/var/task
+    networks:
+      - host
+
+  pytest_env:
+    build: ./pytest_env
+    volumes:
+      - ./pytest_env/tests:/usr/src/app/tests
+    networks:
+      - host
+
+networks:
+  host:
